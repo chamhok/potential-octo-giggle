@@ -1,0 +1,13 @@
+name: inspect-ace-step-space
+
+on: [push]
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect API
+        run: |
+          python3 -m pip install --upgrade gradio_client
+          python3 space_inspect.py
