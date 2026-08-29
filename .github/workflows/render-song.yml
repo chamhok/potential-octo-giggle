@@ -1,10 +1,19 @@
-name: validate-actions
+name: render-original-rnb-song
 
 on: [push]
 
 jobs:
-  test:
+  render:
     runs-on: ubuntu-latest
+    timeout-minutes: 330
     steps:
-      - name: hello
-        run: echo hello
+      - uses: actions/checkout@v4
+      - name: Render song
+        run: bash render_song.sh
+      - name: Upload finished song
+        uses: actions/upload-artifact@v4
+        with:
+          name: read-receipts-rnb-song
+          path: release
+          compression-level: 0
+          retention-days: 3
